@@ -9,6 +9,7 @@ DHT dht(3, DHT11);
 
 
 void setup() {
+  pinMode(4, OUTPUT);
 
   dht.begin();
 
@@ -36,5 +37,15 @@ void loop() {
   u8x8.print("Humidity: ");
   u8x8.println();
   u8x8.println(printHumidity);
+
+  if (humidity > 70.00) {
+    tone(5, 1000);
+    digitalWrite(4, HIGH);
+    delay(1000);
+    digitalWrite(4, LOW);
+    delay(1000);
+  }
+  else
+    noTone(5);
 
 }
